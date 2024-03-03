@@ -1,0 +1,24 @@
+{
+  "name": "hexasphere.js",
+  "version": "0.2.1",
+  "description": "hexasphere",
+  "main": "src/hexasphere.js",
+  "devDependencies": {
+    "browserify": "~3.41.0",
+    "grunt": "~0.4.2",
+    "grunt-browserify": "~2.0.7",
+    "grunt-contrib-watch": "~0.5.3"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/arscan/hexashere.js.git"
+  },
+  "author": "robscanlon@gmail.com",
+  "license": "MIT",
+  "dependencies": {
+    "watchify": "^4.0.0"
+  }
+}
