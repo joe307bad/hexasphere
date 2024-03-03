@@ -20,26 +20,6 @@ $(window).load(function(){
     projectionCanvas.width = img.width;
     projectionCanvas.height = img.height;
     projectionContext.drawImage(img, 0, 0, img.width, img.height);
-    
-
-    var pixelData = null;
-
-    var maxLat = -100;
-    var maxLon = 0;
-    var minLat = 0;
-    var minLon = 0;
-
-    var isLand = function(lat, lon){
-
-        var x = parseInt(img.width * (lon + 180) / 360);
-        var y = parseInt(img.height * (lat+90) / 180);
-
-        if(pixelData == null){
-            pixelData = projectionContext.getImageData(0,0,img.width, img.height);
-        }
-        return pixelData.data[(y * pixelData.width + x) * 4] === 0;
-    };
-
 
     var meshMaterials = [];
     meshMaterials.push(new THREE.MeshBasicMaterial({color: 0x7cfc00, transparent: true}));
@@ -57,19 +37,13 @@ $(window).load(function(){
     oceanMaterial.push(new THREE.MeshBasicMaterial({color: 0x0f1e38, transparent: true}));
 
     var introTick = 0;
-    var seenTiles = {};
-    var currentTiles = [];
 
     var createScene = function(radius, divisions, tileSize){
         introTick = -1;
-        while(scene.children.length > 0){ 
-            scene.remove(scene.children[0]); 
-        }
         var hexasphere = new Hexasphere(radius, divisions, tileSize);
         // debugger;
         for(var i = 0; i< hexasphere.tiles.length; i++){
             var t = hexasphere.tiles[i];
-            var latLon = t.getLatLon(hexasphere.radius);
 
             var geometry = new THREE.Geometry();
 
@@ -84,26 +58,13 @@ $(window).load(function(){
                 geometry.faces.push(new THREE.Face3(0,4,5));
             }
 
-            if(isLand(latLon.lat, latLon.lon)){
-                material = meshMaterials[Math.floor(Math.random() * meshMaterials.length)]
-            } else {
-                material = oceanMaterial[Math.floor(Math.random() * oceanMaterial.length)]
-            }
+            material = meshMaterials[Math.floor(Math.random() * meshMaterials.length)]
 
-            material.opacity = 0.3;
             var mesh = new THREE.Mesh(geometry, material.clone());
             scene.add(mesh);
             hexasphere.tiles[i].mesh = mesh;
 
         }
-
-        seenTiles = {};
-        
-        currentTiles = hexasphere.tiles.slice().splice(0,12);
-        currentTiles.forEach(function(item){
-            seenTiles[item.toString()] = 1;
-            item.mesh.material.opacity = 1;
-        });
 
         window.hexasphere = hexasphere;
         introTick = 0;
@@ -111,7 +72,6 @@ $(window).load(function(){
 
     createScene(30, 1, .95);
 
-    var startTime = Date.now();
     var lastTime = Date.now();
     var cameraAngle = -Math.PI/1.5;
 
@@ -119,7 +79,7 @@ $(window).load(function(){
 
         var dt = Date.now() - lastTime;
 
-        var rotateCameraBy = (2 * Math.PI)/(200000/dt);
+        var rotateCameraBy = (2 * Math.PI)/(7000/dt);
         cameraAngle += rotateCameraBy;
 
         lastTime = Date.now();
@@ -131,68 +91,9 @@ $(window).load(function(){
 
         renderer.render( scene, camera );
 
-        var nextTiles = [];
-
-        currentTiles.forEach(function(item){
-            item.neighbors.forEach(function(neighbor){
-                if(!seenTiles[neighbor.toString()]){
-                    neighbor.mesh.material.opacity = 1;
-                    nextTiles.push(neighbor);
-                    seenTiles[neighbor] = 1;
-                }
-            });
-        });
-
-        currentTiles = nextTiles;
-
         requestAnimationFrame(tick);
 
     }
-
-    function onWindowResize(){
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(window.innerWidth, window.innerHeight);
-
-    }
-
-    function clamp(val, min, max){
-        return Math.min(Math.max(min, val), max);
-    }
-
-    $('.generateButton').click(function(){
-
-        var radius = $('#radius').val();
-        var subdivisions = $('#subdivisions').val();
-        var tileSize = $('#tileSize').val();
-
-        if ($.isNumeric(radius) && $.isNumeric(subdivisions) && $.isNumeric(tileSize)){
-            $('#generateError').hide();
-            radius = parseInt(clamp(radius, .1, 10000));
-            subdivisions = parseInt(clamp(subdivisions, 1, 100));
-            tileSize = parseFloat(clamp(tileSize, 0.0001, 1))
-
-            $('#radius').val(radius);
-            $('#subdivisions').val(subdivisions);
-            $('#tileSize').val(tileSize);
-
-            createScene(radius, subdivisions, tileSize);
-
-            if($(this).prop('id') === 'generateObj'){
-                var blob = new Blob([hexasphere.toObj()], {type: "text/plain;charset=utf-8"});
-                saveAs(blob, 'hexasphere.obj')
-            } else if($(this).prop('id') === 'generateJson'){
-                var blob = new Blob([hexasphere.toJson()], {type: "application/json;charset=utf-8"});
-                saveAs(blob, 'hexasphere.json')
-            }
-        } else {
-            $('#generateError').show();
-        }
-
-
-    });
-
-    window.addEventListener( 'resize', onWindowResize, false );
 
     $("#container").append(renderer.domElement);
     requestAnimationFrame(tick);
