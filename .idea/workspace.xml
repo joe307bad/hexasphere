@@ -4,19 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="12a1bf2a-d2b1-4e10-80d5-56108d3f10da" name="Changes" comment="First commit">
-      <change afterPath="$PROJECT_DIR$/.idea/hexasphere.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/r3f/dist/main.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/r3f/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/r3f/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/r3f/src/index.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/r3f/webpack.config.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/r3f/yarn.lock" afterDir="false" />
+    <list default="true" id="12a1bf2a-d2b1-4e10-80d5-56108d3f10da" name="Changes" comment="drawing one pentagon from Hexasphere with react three fiber">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/hexasphere.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/hexasphere.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hexasphere.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/hexasphere.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/r3f/dist/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/r3f/dist/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/r3f/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/r3f/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/r3f/src/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/r3f/src/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/r3f/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/r3f/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,7 +56,7 @@
       <option name="presentableId" value="Default" />
       <updated>1709412396769</updated>
       <workItem from="1709412398959" duration="8027000" />
-      <workItem from="1709763054743" duration="8958000" />
+      <workItem from="1709763054743" duration="11047000" />
     </task>
     <task id="LOCAL-00001" summary="First commit">
       <created>1709495502710</created>
@@ -72,7 +65,15 @@
       <option name="project" value="LOCAL" />
       <updated>1709495502710</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="drawing one pentagon from Hexasphere with react three fiber">
+      <option name="closed" value="true" />
+      <created>1709814473098</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1709814473098</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -91,6 +92,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="First commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="First commit" />
+    <MESSAGE value="drawing one pentagon from Hexasphere with react three fiber" />
+    <option name="LAST_COMMIT_MESSAGE" value="drawing one pentagon from Hexasphere with react three fiber" />
   </component>
 </project>
