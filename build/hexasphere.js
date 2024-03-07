@@ -79,7 +79,6 @@ Face.prototype.getCentroid = function(clear){
 module.exports = Face;
 
 },{"./point":4}],3:[function(require,module,exports){
-console.log('21312321')
 var Tile = require('./tile'),
     Face = require('./face'),
     Point = require('./point');

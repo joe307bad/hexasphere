@@ -1,4 +1,3 @@
-console.log('21312321')
 var Tile = require('./tile'),
     Face = require('./face'),
     Point = require('./point');
